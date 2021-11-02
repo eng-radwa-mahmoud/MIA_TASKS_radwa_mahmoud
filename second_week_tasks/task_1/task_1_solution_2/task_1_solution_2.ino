@@ -1,13 +1,14 @@
 #include <MPU6050_light.h>
 
  #include <Wire.h>
+ TwoWire Wire2(PB_6, PB_7);
  MPU6050 mpu(Wire);
 HardwareSerial Serial3(PB_11, PB_10);
 
 void setup() {
   // put your setup code here, to run once:
  Serial3.begin(115200);
- Wire.begin();
+ Wire2.begin();
  mpu.begin();
  mpu.calcGyroOffsets();  
 }
