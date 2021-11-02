@@ -47,7 +47,7 @@ void setup() {
   Serial3.begin(115200);
   setIMUregister(0x6B,0x00);// call of function to initialize the imu
   setIMUregister(0x1C,0x18);//call of function to configure the  Accelerometer
-  pinMode(5,OUTPUT);//red led
+  
 
 }
 
