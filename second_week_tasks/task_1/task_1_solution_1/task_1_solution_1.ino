@@ -1,6 +1,7 @@
 #include "I2Cdev.h"
 #include "MPU6050_6Axis_MotionApps20.h"
 #include "Wire.h"
+TwoWire Wire2(PB_6, PB_7);
 HardwareSerial Serial3(PB_11, PB_10);
 MPU6050 mpu;
 uint8_t devStatus; 
@@ -14,7 +15,7 @@ float ypr[3];
 uint8_t fifoBuffer[64];
 void setup() {
   // put your setup code here, to run once:
-Wire.begin();
+Wire2.begin();
 Serial3.begin(115200);
 mpu.initialize();
 devStatus=mpu.dmpInitialize();
