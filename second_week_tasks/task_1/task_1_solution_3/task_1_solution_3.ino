@@ -1,24 +1,25 @@
 unsigned long long int accx,accy,accz;
 HardwareSerial Serial3(PB_11, PB_10);
 #include<Wire.h>
+TwoWire Wire2(PB_6, PB_7);
   void setIMUregister(unsigned int reg,unsigned int val)//function  used to initialize imu and configure  Accelerometer
 {
-  Wire.beginTransmission(0x68);//begin i2c communication with the imu , 0x68:address of imu
-  Wire.write(reg);
-  Wire.write(val);
-  Wire.endTransmission();
+  Wire2.beginTransmission(0x68);//begin i2c communication with the imu , 0x68:address of imu
+  Wire2.write(reg);
+  Wire2.write(val);
+  Wire2.endTransmission();
 }
 void readIMUacc () //function to read  Accelerometerreading in direction of x ,y ,z axes
 {
-Wire.beginTransmission(0x68);
-Wire.write(0x3B);//0x3B:register to satrt taking data from
-Wire.endTransmission();
-Wire.requestFrom(0x68,6);//request 6 bytes from the imu starrting from 0x3B location
+Wire2.beginTransmission(0x68);
+Wire2.write(0x3B);//0x3B:register to satrt taking data from
+Wire2.endTransmission();
+Wire2.requestFrom(0x68,6);//request 6 bytes from the imu starrting from 0x3B location
 while(Wire.available()<6)
 {
-  accx=(Wire.read()<<8)|(Wire.read());
-  accy=(Wire.read()<<8)|(Wire.read());
-  accz=(Wire.read()<<8)|(Wire.read());
+  accx=(Wire2.read()<<8)|(Wire2.read());
+  accy=(Wire2.read()<<8)|(Wire2.read());
+  accz=(Wire2.read()<<8)|(Wire2.read());
 }
 }
 void calibrate_acc()//function to calibrate the readings of  Accelerometer and calculate the final result
