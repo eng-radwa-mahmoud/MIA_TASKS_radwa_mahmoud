@@ -6,17 +6,17 @@ ros::NodeHandle encoder;
 long long counter1=0;
 void ISRA1() 
 {
-  if (digitalRead(PB_0)!=digitalRead(PB_0))//check if encoder is moving clockwise or counter clockwise
+  if (digitalRead(PB_0)==digitalRead(PB_7))//check if encoder is moving clockwise or counter clockwise
     counter1++;//increase the counter in case the encoder moving clockwise
     else
     counter1--;//decrease the counter in case the encoder moving counter clockwise
 }
 void ISRB1 () 
   {
-    if (digitalRead(PA_7)!=digitalRead(PA_7))//check if encoder is moving clockwise or counter clockwise
-   counter1++;//increase the counter in case the encoder moving clockwise
+    if (digitalRead(PA_0)!=digitalRead(PA_7))//check if encoder is moving clockwise or counter clockwise
+   counter1--;//increase the counter in case the encoder moving clockwise
   else
-  counter1--;
+  counter1++;
   }
 void setup() {
   // put your setup code here, to run once:
